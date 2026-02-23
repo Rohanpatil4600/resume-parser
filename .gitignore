@@ -1,0 +1,8 @@
+.env
+*.db
+__pycache__/
+.venv/
+venv/
+*.pyc
+.pytest_cache/
+.Streamlit/
