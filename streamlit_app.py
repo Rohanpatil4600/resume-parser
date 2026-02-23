@@ -16,6 +16,14 @@ import streamlit as st
 # Load env before any LangChain/OpenAI calls
 from dotenv import load_dotenv
 load_dotenv()
+# When deployed (e.g. Streamlit Community Cloud), use app secrets
+import os
+try:
+    import streamlit as _st
+    if hasattr(_st, "secrets") and _st.secrets.get("OPENAI_API_KEY"):
+        os.environ["OPENAI_API_KEY"] = _st.secrets["OPENAI_API_KEY"]
+except Exception:
+    pass
 
 from tools import extract_pdf_text, fetch_jd_from_url, hash_text
 from graph import run_engine_stream
